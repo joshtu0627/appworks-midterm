@@ -24,7 +24,14 @@ const getTransactions = async (req, res) => {
 
 const getTotalRevenue = async (req, res) => {
   try {
+    // test time
+    const start = new Date();
     const response = await orderModel.getTotalRevenue();
+    const end = new Date();
+
+    console.log("Total time: ", end - start);
+    console.log("memory: ", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
+
     res.status(200).send({
       totalRevenue: response,
     });
@@ -46,7 +53,12 @@ const storeProductOrderList = async (req, res) => {
 
 const aggregateSalesQuantitysByColor = async (req, res) => {
   try {
+    const start = new Date();
     const response = await orderModel.aggregateSalesQuantitysByColor();
+    const end = new Date();
+
+    console.log("Total time: ", end - start);
+    console.log("memory: ", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
     res.status(200).send(response);
   } catch (err) {
     console.log(err);
@@ -55,7 +67,12 @@ const aggregateSalesQuantitysByColor = async (req, res) => {
 };
 const getTop5QtyProducts = async (req, res) => {
   try {
+    const start = new Date();
     const response = await orderModel.getTop5QtyProducts();
+    const end = new Date();
+
+    console.log("Total time: ", end - start);
+    console.log("memory: ", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
     res.status(200).send(response);
   } catch (err) {
     console.log(err);
@@ -65,7 +82,12 @@ const getTop5QtyProducts = async (req, res) => {
 
 const aggregateSalesQuantitysByPrice = async (req, res) => {
   try {
+    const start = new Date();
     const response = await orderModel.aggregateSalesQuantitysByPrice();
+    const end = new Date();
+
+    console.log("Total time: ", end - start);
+    console.log("memory: ", process.memoryUsage().heapUsed / 1024 / 1024, "MB");
     res.status(200).send(response);
   } catch (err) {
     console.log(err);
