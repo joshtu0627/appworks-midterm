@@ -41,6 +41,16 @@
             title: {
               text: "Product sold percentage in different price",
             },
+            xaxis: {
+              title: {
+                text: "Price Range",
+              },
+            },
+            yaxis: {
+              title: {
+                text: "Quantity",
+              },
+            },
           };
           var data = [trace];
           console.log(data);
@@ -91,17 +101,20 @@
             x: top5histogramData.map((data) => "product_" + data.product_id),
             y: top5histogramData.map((data) => data.S),
             type: "bar",
+            name: "S",
           };
           const traceM = {
             x: top5histogramData.map((data) => "product_" + data.product_id),
             y: top5histogramData.map((data) => data.M),
             type: "bar",
+            name: "M",
           };
 
           const traceL = {
             x: top5histogramData.map((data) => "product_" + data.product_id),
             y: top5histogramData.map((data) => data.L),
             type: "bar",
+            name: "L",
           };
 
           var data = [traceS, traceM, traceL];
