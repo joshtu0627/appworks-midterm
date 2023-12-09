@@ -24,6 +24,8 @@ const getTransactions = async (req, res) => {
 
 const getTotalRevenue = async (req, res) => {
   try {
+    console.log("getTotalRevenue");
+
     // test time
     const start = new Date();
     const response = await orderModel.getTotalRevenue();
@@ -53,6 +55,7 @@ const storeProductOrderList = async (req, res) => {
 
 const aggregateSalesQuantitysByColor = async (req, res) => {
   try {
+    console.log("aggregateSalesQuantitysByColor");
     const start = new Date();
     const response = await orderModel.aggregateSalesQuantitysByColor();
     const end = new Date();
@@ -67,6 +70,7 @@ const aggregateSalesQuantitysByColor = async (req, res) => {
 };
 const getTop5QtyProducts = async (req, res) => {
   try {
+    console.log("getTop5QtyProducts");
     const start = new Date();
     const response = await orderModel.getTop5QtyProducts();
     const end = new Date();
@@ -82,6 +86,7 @@ const getTop5QtyProducts = async (req, res) => {
 
 const aggregateSalesQuantitysByPrice = async (req, res) => {
   try {
+    console.log("aggregateSalesQuantitysByPrice");
     const start = new Date();
     const response = await orderModel.aggregateSalesQuantitysByPrice();
     const end = new Date();
