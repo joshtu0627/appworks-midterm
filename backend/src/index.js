@@ -27,7 +27,7 @@ app.get(
 
 app.get("/top5Products", orderController.getTop5QtyProducts);
 
-app.get("/dashboard.html", (req, res) => {
+app.get("/admin/dashboard.html", (req, res) => {
   res.sendFile("dashboard.html", { root: "./" });
 });
 
