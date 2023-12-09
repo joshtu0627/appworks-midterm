@@ -5,12 +5,7 @@ import orderController from "./controllers/order.controller.js";
 
 const app = express();
 
-app.use(
-  // http://13.236.23.10:8000
-  cors({
-    origin: "http://13.236.23.10:8000",
-  })
-);
+app.use(cors());
 
 app.get("/storeOuterTransaction", orderController.storeOuterTransaction);
 
