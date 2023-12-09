@@ -15,7 +15,7 @@
     <div id="pie" style="width: 600px; height: 600px"></div>
     <div id="top5histogram" style="width: 600px; height: 250px"></div>
     <script>
-      fetch("http://127.0.0.1:8000/aggregateSalesQuantitysByPrice")
+      fetch("http://13.236.23.10:8000/aggregateSalesQuantitysByPrice")
         .then((response) => response.json())
         .then((histogramData) => {
           console.log(histogramData);
@@ -37,7 +37,7 @@
           return data;
         });
 
-      fetch("http://127.0.0.1:8000/totalRevenue")
+      fetch("http://13.236.23.10:8000/totalRevenue")
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -45,7 +45,7 @@
           TOTAL.innerHTML = "total revenue:" + data.totalRevenue;
         });
 
-      fetch("http://127.0.0.1:8000/aggregateSalesQuantitysByColor")
+      fetch("http://13.236.23.10:8000/aggregateSalesQuantitysByColor")
         .then((response) => response.json())
         .then((pieData) => {
           console.log(pieData);
@@ -70,7 +70,7 @@
           return data;
         });
 
-      fetch("http://127.0.0.1:8000/top5Products")
+      fetch("http://13.236.23.10:8000/top5Products")
         .then((response) => response.json())
         .then((top5histogramData) => {
           console.log(top5histogramData);
