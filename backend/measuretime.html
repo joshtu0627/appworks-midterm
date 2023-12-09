@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // test fetch time
+      async function testApiSpeed(url) {
+        let totalStart = new Date().getTime();
+        for (let i = 0; i < 10; i++) {
+          let start = new Date().getTime();
+          await fetch(url);
+          let end = new Date().getTime();
+          console.log("API call took " + (end - start) + " ms.");
+        }
+        let totalEnd = new Date().getTime();
+        console.log(
+          "API call took average " + (totalEnd - totalStart) / 10 + " ms."
+        );
+      }
+
+      let urls = [
+        "http://127.0.0.1:8000/totalRevenue",
+        "http://127.0.0.1:8000/aggregateSalesQuantitysByPrice",
+        "http://127.0.0.1:8000/aggregateSalesQuantitysByColor",
+        "http://127.0.0.1:8000/top5Products",
+      ];
+    </script>
+
+    <button onclick="testApiSpeed(urls[0])">test get revenue speed</button>
+    <button onclick="testApiSpeed(urls[1])">test aggregate price speed</button>
+    <button onclick="testApiSpeed(urls[2])">test aggregate color speed</button>
+    <button onclick="testApiSpeed(urls[3])">test get top 5 speed</button>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdn.plot.ly/plotly-2.27.0.min.js"
+      charset="utf-8"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="total"></div>
+    <div id="histogram" style="width: 600px; height: 250px"></div>
+    <div id="pie" style="width: 600px; height: 600px"></div>
+    <div id="top5histogram" style="width: 600px; height: 250px"></div>
+    <script>
+      fetch("http://127.0.0.1:8000/aggregateSalesQuantitysByPrice")
+        .then((response) => response.json())
+        .then((histogramData) => {
+          console.log(histogramData);
+          histogram = document.getElementById("histogram");
+
+          const trace = {
+            x: histogramData.map((data) => data.x),
+            y: histogramData.map((data) => data.y),
+            type: "bar",
+          };
+          var layout = {
+            title: {
+              text: "Product sold percentage in different price",
+            },
+          };
+          var data = [trace];
+          console.log(data);
+          Plotly.newPlot(histogram, data, layout);
+          return data;
+        });
+
+      fetch("http://127.0.0.1:8000/totalRevenue")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          TOTAL = document.getElementById("total");
+          TOTAL.innerHTML = "total revenue:" + data.totalRevenue;
+        });
+
+      fetch("http://127.0.0.1:8000/aggregateSalesQuantitysByColor")
+        .then((response) => response.json())
+        .then((pieData) => {
+          console.log(pieData);
+          pie = document.getElementById("pie");
+          console.log(pieData);
+          const trace = {
+            labels: pieData.map((data) => data.x),
+            values: pieData.map((data) => data.y[1]),
+            marker: {
+              colors: pieData.map((data) => data.y[0]),
+            },
+            type: "pie",
+          };
+          var layout = {
+            title: {
+              text: "Product sold percentage in different colors",
+            },
+          };
+          console.log(trace);
+          var data = [trace];
+          Plotly.newPlot(pie, data, layout);
+          return data;
+        });
+
+      fetch("http://127.0.0.1:8000/top5Products")
+        .then((response) => response.json())
+        .then((top5histogramData) => {
+          console.log(top5histogramData);
+          top5histogram = document.getElementById("top5histogram");
+
+          const traceS = {
+            x: top5histogramData.map((data) => "product_" + data.product_id),
+            y: top5histogramData.map((data) => data.S),
+            type: "bar",
+          };
+          const traceM = {
+            x: top5histogramData.map((data) => "product_" + data.product_id),
+            y: top5histogramData.map((data) => data.M),
+            type: "bar",
+          };
+
+          const traceL = {
+            x: top5histogramData.map((data) => "product_" + data.product_id),
+            y: top5histogramData.map((data) => data.L),
+            type: "bar",
+          };
+
+          var data = [traceS, traceM, traceL];
+          console.log(data);
+          var layout = {
+            barmode: "stack",
+            title: {
+              text: "Quantity of top 5 sold products in different sizes",
+            },
+          };
+
+          Plotly.newPlot("top5histogram", data, layout);
+          return data;
+        });
+    </script>
+  </body>
+</html>
